@@ -18,7 +18,7 @@ module.exports.convert = function (filename) {
         .fromFile(csvFilePath)
         .on('json',(jsonObj)=>{
             //console.log(jsonObj);
-            //fs.writeFile('./ConvertedJSONs/'+convFile+'.json',"["+JSON.stringify(jsonObj)+"]");
+            fs.writeFile('./ConvertedJSONs/'+convFile+'.json',"["+JSON.stringify(jsonObj)+"]");
             fs.writeFile('./ConvertedJSONs/input.json',"["+JSON.stringify(jsonObj)+"]");
         })
         .on('done',(error)=>{

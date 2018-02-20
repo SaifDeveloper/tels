@@ -18,6 +18,8 @@ let pdfParser = new PDFParser();
 
 let _convert = require('./convert');
 let _compare = require('./compare');
+let _match   = require('./match');
+
 const app = express();
 
 
@@ -66,6 +68,8 @@ app.post('/upload', function(req, res) {
     //CONVERT TO CSV to JSON
     _convert.convert(filename);
 
+    _match.match(filename);
+
 });
 
 
@@ -74,8 +78,17 @@ app.post('/compare',function (req,res) {
     _compare.compare(filename);
     //res.send("Check the difference folder !")
 
+
+
     res.redirect('http://localhost:8080/');
 });
+
+app.get('/match',function (req,res) {
+    //res.json({success:true,msg:'yes'})
+    var strdata = _match.match();
+    var data = JSON.parse(strdata);
+    res.json(data)
+})
 
 //START SERVER
 const port = 8080;
