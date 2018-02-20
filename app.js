@@ -85,9 +85,10 @@ app.post('/compare',function (req,res) {
 
 app.get('/match',function (req,res) {
     //res.json({success:true,msg:'yes'})
-    var strdata = _match.match();
-    var data = JSON.parse(strdata);
-    res.json(data)
+    // var strdata = _match.match();
+    // var data = JSON.parse(strdata);
+    var data = fs.readFileSync('./mergedData/finaldata.json', 'utf8');
+    res.json(JSON.parse(data))
 })
 
 //START SERVER

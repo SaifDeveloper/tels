@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+var mergeJSON = require("merge-json") ;
 
 
 module.exports.match = function (filename) {
@@ -191,6 +191,16 @@ module.exports.match = function (filename) {
     fs.writeFileSync('./assetdata/asset_'+convFile+'.json', stringdata);
 
     //MERGING DATA
+    var lhs1 = fs.readFileSync('./mergedData/finaldata.json', 'utf8');
+
+    var parsed_lhs1 = JSON.parse(lhs1)
+
+
+    var result = mergeJSON.merge(parsed_lhs1, newdata) ;
+
+    let finaldata = JSON.stringify(result);
+
+    fs.writeFileSync('./mergedData/finaldata.json', finaldata);
 
 
 
